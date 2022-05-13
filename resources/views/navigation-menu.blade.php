@@ -108,15 +108,27 @@
 
                             <div class="border-t border-gray-100"></div>
 
-                            <!-- Authentication -->
-                            <form method="POST" action="{{ route('logout') }}" x-data>
-                                @csrf
+                            @auth('admin')
+                                <!-- Authentication -->
+                                <form method="POST" action="{{ route('admin.logout') }}" x-data>
+                                    @csrf
 
-                                <x-jet-dropdown-link href="{{ route('logout') }}"
-                                         @click.prevent="$root.submit();">
-                                    {{ __('Log Out') }}
-                                </x-jet-dropdown-link>
-                            </form>
+                                    <x-jet-dropdown-link href="{{ route('admin.logout') }}"
+                                            @click.prevent="$root.submit();">
+                                        {{ __('Log Out') }}
+                                    </x-jet-dropdown-link>
+                                </form>
+                            @else
+                                <!-- Authentication -->
+                                <form method="POST" action="{{ route('logout') }}" x-data>
+                                    @csrf
+
+                                    <x-jet-dropdown-link href="{{ route('logout') }}"
+                                            @click.prevent="$root.submit();">
+                                        {{ __('Log Out') }}
+                                    </x-jet-dropdown-link>
+                                </form>
+                            @endauth
                         </x-slot>
                     </x-jet-dropdown>
                 </div>
